@@ -1,4 +1,6 @@
 *.csv
+*.parquet
+*.pkl
 models/
 mlruns/
 preprocessor/
