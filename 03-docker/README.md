@@ -85,4 +85,19 @@ taxi_ingest:v001 \
   --table_name=yellow_taxi_trips \
   --url=${URL}
 ```
+### With docker-compose
+```
+URL="https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-01.parquet"
+
+docker run -it \
+  --network=mlops-zoomcamp_default \
+taxi_ingest:v001 \
+  --user=root \
+  --password=root \
+  --host=pgdatabase \
+  --port=5432 \
+  --db=ny_taxi \
+  --table_name=yellow_taxi_trips \
+  --url=${URL}
+```
   
