@@ -35,10 +35,9 @@ def calculate_dummy_metrics(curr):
     value1 = rand.randint(0, 1000)
     value2 = str(uuid.uuid4())
     value3 = rand.random()
-    curr.execute(
-        "insert into dummy_metrics(timestamp, value1, value2, value3) values (%s, %s, %s, %s)",
-        (datetime.datetime.now(pytz.timezone('Europe/London')), value1, value2, value3)
-    )
+    timestamp = datetime.datetime.now(pytz.timezone('Europe/London'))
+    insert_statement = "insert into dummy_metrics (timestamp, value1, value2, value3) values (%s, %s, %s, %s);"
+    curr.execute(insert_statement, (timestamp, value1, value2, value3))
 
 def main():
     prep_db()
@@ -47,6 +46,7 @@ def main():
         for i in range(0, 100):
             with conn.cursor() as curr:
                 calculate_dummy_metrics(curr)
+                conn.commit()
             new_send = datetime.datetime.now()
             second_elapsed = (new_send - last_send).total_seconds()
             if second_elapsed < SEND_TIMEOUT:
