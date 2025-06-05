@@ -6,6 +6,9 @@ mlruns/
 mlartifacts/
 preprocessor/
 ny_taxi_postgres_data/
+mlops/
+.DS_Store
+.vscode/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
