@@ -6,6 +6,7 @@ import os
 PATH = os.path.dirname(os.path.realpath(__file__))
 
 def get_model_path():
+    # pylint: disable=no-else-return
     model_location = os.getenv('MODEL_LOCATION')
     if model_location is not None:
         return model_location
@@ -19,13 +20,14 @@ def load_model():
     return dv, model
 
 class ModelService():
+    # pylint: disable=too-few-public-methods
     def __init__(self, dv, model):
         self.dv = dv
         self.model = model
 
     def prepare_features(self, ride):
         features = {}
-        features['PU_DO'] = '%s_%s' % (ride["PULocationID"], ride["DOLocationID"])
+        features['PU_DO'] = f'{ride["PULocationID"]}_{ride["DOLocationID"]}'
         features['trip_distance'] = ride["trip_distance"]
         return features
 

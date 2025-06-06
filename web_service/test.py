@@ -1,7 +1,7 @@
-import predict
+# import predict
 import requests
-import json
-import pickle
+# import json
+# import pickle
 import os
 
 PATH = os.path.dirname(os.path.realpath(__file__))
@@ -13,7 +13,7 @@ ride = {
 }
 
 url = 'http://localhost:9696/predict'
-response = requests.post(url, json=ride)
+response = requests.post(url, json=ride, timeout=10)
 print(response.json())
 
 # with open(f'{PATH}/lin_reg.bin', 'rb') as f_in:
