@@ -14,6 +14,7 @@ response = requests.post(url, json=ride, timeout=10)
 print(response.json())
 print("tested!")
 print("test.py finished")
+print("PATH:", PATH)
 
 # with open(f'{PATH}/lin_reg.bin', 'rb') as f_in:
 #     (dv, model) = pickle.load(f_in)
