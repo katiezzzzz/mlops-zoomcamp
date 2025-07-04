@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - 'web_service/'
+      - 'web_service/**'
 
 jobs:
   test:
