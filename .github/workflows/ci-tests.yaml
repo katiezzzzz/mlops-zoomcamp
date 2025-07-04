@@ -2,9 +2,9 @@ name: CI Tests
 on:
   pull_request:
     branches:
-      - 'main'
+      - main
     paths:
-      - 'web_service/'
+      - 'web_service/**'
 
 jobs:
   test:
@@ -18,18 +18,18 @@ jobs:
           python-version: '3.13.3'
 
       - name: Install dependencies
-        working-directory: "web_service/"
-        run: pip install pipenv && pipenv install --dev
+        working-directory: web_service/
+        run: pip install -r requirements.txt
 
       - name: Run Unit Tests
-        working-directory: "tests/"
-        run: pipenv run pytest .
+        working-directory: tests/
+        run: pytest .
 
       - name: Lint
-        working-directory: "web_service/"
-        run: pipenv run pylint --recursive=y .
+        working-directory: web_service/
+        run: pylint --recursive=y .
 
       - name: Run Integration Tests
-        working-directory: "web_service/integration-test/"
+        working-directory: web_service/integration-test/
         run: |
           . run.sh
