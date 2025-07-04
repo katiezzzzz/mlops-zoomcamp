@@ -30,6 +30,11 @@ jobs:
         working-directory: web_service/
         run: pylint --recursive=y .
 
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+
       - name: Run Integration Tests
         working-directory: web_service/integration-test/
         run: |
