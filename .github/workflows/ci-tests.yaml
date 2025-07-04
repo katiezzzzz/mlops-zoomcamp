@@ -11,12 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        # clones repo onto VM and install docker
-
-      - name: Set up Python 3.9
+      # clones repo onto VM and install docker
+      - name: Set up Python 3.13.3
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
+          python-version: '3.13.3'
 
       - name: Install dependencies
         working-directory: web_service/
