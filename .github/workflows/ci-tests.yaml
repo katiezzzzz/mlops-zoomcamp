@@ -1,0 +1,35 @@
+name: CI Tests
+on:
+  pull_request:
+    branches:
+      - 'develop'
+    paths:
+      - 'web_service/'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # clones repo onto VM and install docker
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        working-directory: "web_service/"
+        run: pip install pipenv && pipenv install --dev
+
+      - name: Run Unit Tests
+        working-directory: "tests/"
+        run: pipenv run pytest .
+
+      - name: Lint
+        working-directory: "web_service/"
+        run: pipenv run pylint --recursive=y .
+
+      - name: Run Integration Tests
+        working-directory: "web_service/integration-test/"
+        run: |
+          . run.sh

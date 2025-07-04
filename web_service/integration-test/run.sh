@@ -3,8 +3,13 @@
 # exit at first error seen
 # set -e
 
+# accommodate for github actions
+if [[ -z "${GITHUB_ACTIONS}" ]]; then
+    cd "$(dirname "$0")"
+fi
+
 # cd to the directory of this script
-cd "$(dirname "$0")"
+# cd "$(dirname "$0")"
 
 if [ "${LOCAL_IMAGE_NAME}" == "" ]; then
     LOCAL_TAG=`date +"%Y-%m-%d-%H-%M"`
