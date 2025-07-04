@@ -6,10 +6,14 @@
 # cd to the directory of this script
 cd "$(dirname "$0")"
 
-LOCAL_TAG=`date +"%Y-%m-%d-%H-%M"`
-export LOCAL_IMAGE_NAME="web-service:${LOCAL_TAG}"
-
-docker build -t ${LOCAL_IMAGE_NAME} ..
+if [ "${LOCAL_IMAGE_NAME}" == "" ]; then
+    LOCAL_TAG=`date +"%Y-%m-%d-%H-%M"`
+    export LOCAL_IMAGE_NAME="web-service:${LOCAL_TAG}"
+    echo "No local image name provided, building a new image with tag ${LOCAL_TAG}."
+    docker build -t ${LOCAL_IMAGE_NAME} ..
+else
+    echo "Using local image: ${LOCAL_IMAGE_NAME}"
+fi
 
 docker-compose up -d
 

@@ -13,3 +13,16 @@ docker run -it --rm \
     -v $(pwd)/model:/app/model \
     web-service:v3
 ```
+
+### Without makefiles
+```
+isort .
+black .
+pylint --recursive=y .
+pytest tests/
+```
+
+### To prepare the project, run
+```bash
+make setup
+```
